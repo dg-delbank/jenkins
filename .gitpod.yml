@@ -1,0 +1,22 @@
+image:
+  file: .gitpod.Dockerfile
+
+ports:
+  - port: 8080
+    onOpen: ignore
+
+tasks:
+  - name: Start Jenkins
+    command: |
+      wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+      sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+      sudo apt-get update
+      sudo apt-get install -y jenkins
+      sudo systemctl start jenkins
+
+      sleep 30
+
+      sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+      sudo journalctl -fu jenkins
+
+    openMode: split-right
