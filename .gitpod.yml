@@ -1,5 +1,5 @@
 image:
-  file: .gitpod
+  file: .gitpod.yml
 
 ports:
   - port: 8080
